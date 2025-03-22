@@ -1,102 +1,199 @@
+"use client"
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 export default function Home() {
+  const { data: session } = useSession();
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div>
+      <header>
+        <div className="navbar">
+          <div className="logo cp">Code<span>X</span></div>
+          <div className="navlist "><a href="#courses">All Courses</a></div>
+          <div className="navlist "><a href="">Gamma</a></div>
+          <div className="navlist "><a href="#about">About Us</a></div>
+          <div className="navlist "><a href="#contact">Contact Us</a></div>
+          <div className="navlist ">My Learning</div>
+          {!session &&
+            <div className="login "><a href="/api/auth/signin">Login/Register</a></div>
+          }
+          {session &&
+            <div className="login "><a href="/api/auth/signout">Sign Out</a></div>
+          }
         </div>
+      </header>
+      <main>
+        <div className="slider">
+          {/* <Image className="slide" width={500} height="700" src="White Gradient Online Education App Promotion Banner.png" alt="" /> */}
+
+        </div>
+        {session?.user &&
+          <h1 className="welcomeHeader">Welcome {session.user.name}</h1>
+        }
+        <div><h1>Start learning</h1></div>
+        <div><h2>Recommended</h2></div>
+
+        <div className="content-box" id="courses">
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (1).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=VTLCoHnyACE&list=PLfqMhTWNBTe137I_EPQd34TsgV6IO55pt" target="_blank">Complete Dsa Course | Data Structure And Algorithm</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault.jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=EerdGm-ehJQ&pp=ygUWamF2YXNjcmlwdCBmdWxsIGNvdXJzZQ%3D%3D" target="_blank">Javascript Full course - Beginner to pro</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (2).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=ER9SspLe4Hg&list=PLu0W_9lII9ahR1blWXxgSlL4y9iQBnLpR" target="_blank">Javascript Tutorial | Beginner to Advanced</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (3).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=UrsmFxEIp5k&pp=ygUScHl0aG9uIGZ1bGwgY291cnNl" target="_blank">Python for beginners | One shot</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (4).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=7wnove7K-ZQ&list=PLu0W_9lII9agwh1XjRt242xIpHhPT2llg" target="_blank">Python for beginners (Full Course) | #100days of code</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (5).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=-TkoO8Z07hI&pp=ygUDYysr" target="_blank">C++ Full Course | For Beginner</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (6).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=VTLCoHnyACE&list=PLfqMhTWNBTe137I_EPQd34TsgV6IO55pt" target="_blank">Complete Dsa Course | Data Structure And Algorithm | C++</a></p>
+          </div>
+
+          <div className="box">
+            <Image height={170} width={500} src="/sddefault.jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=rZ41y93P2Qo&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ" target="_blank">Complete Dsa Course in Java | Data Structure And Algorithm</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (7).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=tVzUXW6siu0&list=PLu0W_9lII9agq5TrH9XLIKQvv0iaF2X3w&index=1&pp=iAQB" target="_blank">Sigma Web Development Course</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (8).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=ZbG0c87wcM8&list=PL9gnSGHSqcnoqBXdMwUTRod4Gi3eac2Ak" target="_blank">DevOps Bootcamp</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (1).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=VTLCoHnyACE&list=PLfqMhTWNBTe137I_EPQd34TsgV6IO55pt" target="_blank">Complete Dsa Course | Data Structure And Algorithm</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault.jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=EerdGm-ehJQ&pp=ygUWamF2YXNjcmlwdCBmdWxsIGNvdXJzZQ%3D%3D" target="_blank">Javascript Full course - Beginner to pro</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (2).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=ER9SspLe4Hg&list=PLu0W_9lII9ahR1blWXxgSlL4y9iQBnLpR" target="_blank">Javascript Tutorial | Beginner to Advanced</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (3).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=UrsmFxEIp5k&pp=ygUScHl0aG9uIGZ1bGwgY291cnNl" target="_blank">Python for beginners | One shot</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (4).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=7wnove7K-ZQ&list=PLu0W_9lII9agwh1XjRt242xIpHhPT2llg" target="_blank">Python for beginners (Full Course) | #100days of code</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (5).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=-TkoO8Z07hI&pp=ygUDYysr" target="_blank">C++ Full Course | For Beginner</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (6).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=VTLCoHnyACE&list=PLfqMhTWNBTe137I_EPQd34TsgV6IO55pt" target="_blank">Complete Dsa Course | Data Structure And Algorithm | C++</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/sddefault.jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=rZ41y93P2Qo&list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ" target="_blank">Complete Dsa Course in Java | Data Structure And Algorithm</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (7).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=tVzUXW6siu0&list=PLu0W_9lII9agq5TrH9XLIKQvv0iaF2X3w&index=1&pp=iAQB" target="_blank">Sigma Web Development Course</a></p>
+          </div>
+          <div className="box">
+            <Image height={170} width={500} src="/hqdefault (8).jpg" alt="" />
+            <p><a href="https://www.youtube.com/watch?v=ZbG0c87wcM8&list=PL9gnSGHSqcnoqBXdMwUTRod4Gi3eac2Ak" target="_blank">DevOps Bootcamp</a></p>
+          </div>
+
+
+        </div>
+
+        <div className="container" id="about">
+          <div className="abt">
+
+            <h1>About Our EdTech Platform</h1>
+            <p>We aim to make life of students easier.</p>
+
+            <h2>Our Mission & Impact</h2>
+          </div>
+
+          <div className="stats">
+            <div className="stat-box">
+              <p className="counter" id="learners">Free</p>
+              <p>Resources</p>
+            </div>
+            <div className="stat-box">
+              <p className="counter" id="educators">Gamma</p>
+              <p>personal Guide</p>
+            </div>
+            <div className="stat-box">
+              <p className="counter" id="minutes">10+</p>
+              <p>Top Selected Courses</p>
+            </div>
+
+          </div>
+          <div className="abt">
+            <h2>Roadmap</h2>
+          </div>
+          <div className="timeline">
+            <div><strong>DSA:</strong> Youtube lectures from Apna COllege and Kunal Kushwaha  </div>
+            <div><strong>Web Development:</strong> Sigma Batch | Code With Harry</div>
+            <div><strong>Java:</strong> Kunal Kushwaha</div>
+            <div><strong>C++:</strong> Apna College</div>
+            <div><strong>Projects And Open source:</strong> Harkirat Singh</div>
+            <div><strong>One Shots:</strong> Bro code one shot lectures for fast learners</div>
+          </div>
+        </div>
+
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+
+
+      <footer className="footer" id="contact">
+        <div className="footer">
+          <p>"Education is the most powerful weapon which you can use to change the world." – Nelson Mandela</p>
+          <span>With love from CodeX ❤️</span>
+        </div>
+        <div className="footer-container">
+
+          <div className="footer-section">
+            <h2>About Us</h2>
+            <p>We provide top-quality educational resources to help students and professionals grow in their careers.</p>
+          </div>
+
+          <div className="footer-section">
+            <h2>Quick Links</h2>
+            <ul>
+              <li><a href="#">Courses</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+
+          <div className="footer-section">
+            <h2>Contact Us</h2>
+            <p>Email: codex.solutions1234@gmail.com</p>
+            <p>Phone: +1 (123) 456-7890</p>
+
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          &copy; 2025 EdTech Inc. All rights reserved.
+        </div>
       </footer>
     </div>
   );
